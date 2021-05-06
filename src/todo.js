@@ -1,5 +1,5 @@
-
 import { Firestore } from '@google-cloud/firestore'
+import { getUptime } from './client'
 
 const store      = new Firestore(),
       collection = store.collection('discord-bot'),
@@ -7,9 +7,8 @@ const store      = new Firestore(),
       todos      = await getTodoList(document);
 
 export default async function(msg) {
-  /** ## Sample To-Do Application ##
-   *  This application is meant to help demonstrate
-   *  how to get/set data from a firebase store.
+  /* This sample todo app is meant to demonstrate
+   * how to manage data using a firebase store.
    */
 
   // Filter incoming messages.
@@ -74,10 +73,11 @@ async function removeTodo(pos) {
 
 function listTodos() {
   /** Print out our current todo list. */
-  let head = `\`\`\` === [ TODO LIST ] === \n`,
-      line = (i, v) => `[${i}] ${v}\n`,
-      foot = 'Use number values to remove an entry.';
+  let head = `\`\`\`markdown\n# =[ TODO LIST ]= #\n\n`,
+      line = (i, v) => `${i}. ${v}\n`,
+      foot = 'Use number values to remove an entry.',
+      time = `- Bot uptime: ${getUptime()}.`;
 
   todos.map((v, i) => head += line(i+1, v));
-  return `${head} \n ${foot} \n \`\`\``;
+  return `${head} \n${foot} \n\n${time} \`\`\``;
 }

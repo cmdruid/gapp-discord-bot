@@ -3,18 +3,13 @@ import dayjs   from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import todoHandler  from './todo'
 
-// Useful for calculating an elapsed-time duration.
-dayjs.extend(relativeTime);
-
-// When AppEngine kills our bot, this variable
-// will reset back to being undefined.
+/* If Google's app engine kills our bot, 
+ * this variable will reset back to undefined.
+ */
 let uptime;
 
-export default function() {
-  /** ## Main Connection Loop ##
-   *  If/when our bot is killed by Google's AppEngine,
-   *  this loop will reset and reconnect to Discord.
-   */
+export function connect() {
+  /** Main Connection Loop. */
 
   if (!uptime) {
     // Configure client, variables and options.
@@ -25,25 +20,27 @@ export default function() {
 
     if (!apiToken) throw Error('No API token is set!');
     
-    // Client "ready" loop.
+    // Discord.js client "ready" loop.
     client.on("ready", () => {
       console.log('Discord.js bot is now running.');
       console.info(`Use ${authlink(client.user.id)} to invite this bot onto your server.`);
     });
 
-    // Client event handlers.
+    // Discord.js client event handlers.
     client.on('message', msg => todoHandler(msg));
 
-    // Client login to Discord.
+    // Login to Discord using API token.
     client.login(apiToken);
 
-    // Set our global timer.
+    // Reset our global timer.
     uptime = dayjs();
-
-    // setInterval(() => {
-    //   console.info(`Still alive for ${dayjs(uptime).fromNow(true)}.`);
-    // }, 1000 * 60);
   }
+  // Return current uptime.
+  return { uptime: getUptime() };
+}
 
-  return { uptime: dayjs(uptime).fromNow(true) };
+export function getUptime() {
+  /** Helper function for displaying uptime. */
+  dayjs.extend(relativeTime);
+  return dayjs(uptime).fromNow(true);
 }

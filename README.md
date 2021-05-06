@@ -1,7 +1,7 @@
-## Discord bot template for deploying to Google AppEngine and Firestore.
+## Introduction
 This README is currently a work in progress.
 
-## BUILD STEPS
+## Build Steps
 
 * Create a new project.
   `gcloud projects create gapp-discord-bot`  
@@ -19,13 +19,10 @@ This README is currently a work in progress.
   variable (where KEY_PATH points to credentials.json).**
 * You may get nagged about enabling Firestore API and Cloud Build API.
 
-## TODO
+## ToDo
 - Initial steps for installing gcloud CLI.
 - Additional steps for enabling APIs (and billing).
 - More information regarding the Github Actions cronjob.
-
-## WISH LIST
-- Remove express as a dependency.
-- Use HEAD requests instead of GET.
-- Add additional sections to README.md
 - Add helpful links to Discordjs, Firestore, etc.
+- Explain how to use a proxy service (like cors-proxy).
+

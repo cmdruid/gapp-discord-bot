@@ -9,7 +9,7 @@ import { keepAlive } from './src/keepalive';
 const appURL   = process.env.APP_URL,
       proxyURL = process.env.PROXY_URL,
       fullURL  = `https://${proxyURL}/${appURL}`,
-      interval = 1000 * 60; // 5 minutes.
+      interval = 1000 * 60 * 5; // 5 minutes.
 
 // If required URLs are present, start keepAlive service.
 if (appURL && proxyURL) keepAlive(fullURL, interval);

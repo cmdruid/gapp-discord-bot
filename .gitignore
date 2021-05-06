@@ -1,0 +1,7 @@
+# Default .gitignore
+
+/node_modules
+.env
+app.yaml
+credentials.json
+yarn.lock

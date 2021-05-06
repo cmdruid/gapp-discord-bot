@@ -16,5 +16,5 @@ jobs:
       # Replace --url with your deployed app's URL.
       - name: Send request to endpoint.
         run: |
-          curl --request GET --url "https://gapp-discord-bot.wl.r.appspot.com"
+          curl --request GET --url "https://gapp-discord-bot.wn.r.appspot.com"
           

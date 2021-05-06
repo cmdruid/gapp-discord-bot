@@ -1,0 +1,11 @@
+runtime: nodejs14
+
+env_variables:
+  DISCORD_API_TOKEN: "YOUR DISCORD API TOKEN GOES HERE"
+  NODE_ENV: production
+
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto

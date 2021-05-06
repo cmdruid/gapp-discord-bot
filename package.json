@@ -1,0 +1,28 @@
+{
+  "name": "gapp-discord-bot",
+  "version": "1.0.0",
+  "description": "Template for deploying a Discord bot on Google's AppEngine platform, with Firebase for persistent storage.",
+  "author": "Christopher Scott",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmdruid/gapp-discord-bot.git"
+  },
+  "keywords": [ "discord", "bot", "appengine", "firebase" ],
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --es-module-specifier-resolution=node -r dotenv/config app.js",
+    "start": "node --es-module-specifier-resolution=node app.js",
+    "kill": "pkill -9 node"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^4.11.0",
+    "dayjs": "^1.10.4",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
